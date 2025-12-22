@@ -3,7 +3,7 @@ import type { Property } from "@/types";
 
 export default function PropertyCard({ cover, title, location, price_per_night }: Property) {
   return (
-    <figure className="bg-white flex flex-col gap-3 rounded-lg overflow-hidden">
+    <figure className="bg-white flex flex-col gap-3 rounded-lg overflow-hidden cursor-pointer">
       <div className="relative w-full aspect-4/4">
         <Image src={cover} fill className="object-cover" alt={title} />
         <button
@@ -15,6 +15,7 @@ export default function PropertyCard({ cover, title, location, price_per_night }
         p-2
         hover:scale-105
         transition
+        cursor-pointer
       "
           aria-label="Ajouter aux favoris"
         >

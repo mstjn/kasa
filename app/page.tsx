@@ -6,13 +6,13 @@ import type { Property } from "@/types";
 export default async function Home() {
   const properties: Property[] = await getProperties();
   return (
-    <main className="flex flex-col items-center mt-10 gap-10 px-20 flex-1">
+    <main className="flex flex-col items-center mt-10 gap-10 md:px-20 px-5 flex-1">
       <header className="flex flex-col items-center gap-2">
-        <h1 className="font-bold text-3xl text-(--main-red)">Chez vous, partout et ailleurs</h1>
-        <p>Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.</p>
+        <h1 className="font-bold text-3xl text-(--main-red) text-center">Chez vous, partout et ailleurs</h1>
+        <p className="text-center">Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.</p>
       </header>
 
-      <section className="relative w-full max-w-7xl aspect-16/6 overflow-hidden rounded-xl">
+      <section className="relative w-full max-w-7xl sm:aspect-16/6 aspect-16/20 overflow-hidden rounded-2xl">
         <Image src="/Home-picture.jpg" fill className="object-cover" alt="Maison avec hébergement Kasa" priority />
       </section>
 
@@ -38,7 +38,7 @@ export default async function Home() {
           vous ressemble.
         </p>
 
-        <div className="grid grid-cols-3 gap-5 text-white">
+        <div className="grid sm:grid-cols-3 gap-5 text-white">
           <article className="bg-[#842C16] py-10 px-5 rounded-lg flex flex-col gap-5 max-w-2xs">
             <h4 className="text-lg font-medium">Recherchez</h4>
             <p className="mb-10 text-sm">Entrez votre destination, vos dates et laissez Kasa faire le reste</p>
