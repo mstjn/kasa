@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -17,8 +18,10 @@ export default function Navbar() {
         "
       >
         <ul className="items-center justify-between px-6 h-16 text-sm md:text-lg hidden sm:flex">
-          <li className="cursor-pointer">Accueil</li>
-          <li className="cursor-pointer">À propos</li>
+          <li className="cursor-pointer">
+            <Link href="/">Accueil</Link>
+          </li>
+          <li className="cursor-pointer"><Link href="/about">À propos</Link></li>
 
           <Image src="/Logo-grand.svg" height={40} width={140} alt="Logo" />
 
