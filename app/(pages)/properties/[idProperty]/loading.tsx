@@ -12,7 +12,7 @@ export default function Loading() {
       
           <div className="grid grid-cols-2 gap-4">
           
-            <Skeleton className="col-span-2 aspect-[16/9] rounded-xl" />
+            <Skeleton className="col-span-2 aspect-video rounded-xl" />
 
             {Array.from({ length: 4 }).map((_, i) => (
               <Skeleton key={i} className="aspect-square rounded-xl" />
