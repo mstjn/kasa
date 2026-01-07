@@ -126,5 +126,10 @@
   --bg-main: #FFFBF9;
   --main-red: #99331A;
 }
-
-
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

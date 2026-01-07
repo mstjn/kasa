@@ -1,9 +1,9 @@
 import Image from "next/image";
 import type { Property } from "@/types";
 import Link from "next/link";
-export default function PropertyCard({ cover, title, location, price_per_night, id}: Property) {
+export default function PropertyCard({ cover, title, location, price_per_night, slug, id}: Property) {
   return (
-    <Link href={`/properties/${id}`}>
+    <Link href={`/properties/${slug}--${id}`}>
       <figure className="bg-white flex flex-col gap-3 rounded-lg overflow-hidden cursor-pointer">
         <div className="relative w-full aspect-4/4">
           <Image src={cover} fill className="object-cover" alt={title} />

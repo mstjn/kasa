@@ -17,7 +17,7 @@ export async function getProperties() {
   }
 }
 // retrieve a single property
-export async function getPropertyById(id: string) {
+export async function getPropertyById(id: string | undefined) {
   try {
     const res = await fetch(`${process.env.URL_API}api/properties/${id}`, {
       cache: "no-store",
