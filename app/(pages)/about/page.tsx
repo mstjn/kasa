@@ -1,7 +1,7 @@
 import Image from "next/image";
 export default function page() {
   return (
-    <main className="flex-1 items-center flex flex-col mt-10 mb-10 gap-10 px-5 xl:px-0">
+    <section className="flex-1 items-center flex flex-col mt-10 mb-10 gap-10 px-5 xl:px-0">
       <header className="flex flex-col items-center gap-5 ">
         <h1 className="text-(--main-red) text-4xl font-bold">À propos</h1>
         <p className="text-center">Chez Kasa, nous croyons que chaque voyage mérite un lieu unique où se sentir bien.</p>
@@ -37,6 +37,6 @@ export default function page() {
           </p>
         </div>
       </section>
-    </main>
+    </section>
   );
 }

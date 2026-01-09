@@ -6,7 +6,7 @@ import type { Property } from "@/types";
 export default async function Home() {
   const properties: Property[] = await getProperties();
   return (
-    <main className="flex flex-col items-center mt-10 gap-10 md:px-20 px-5 flex-1">
+    <section className="flex flex-col items-center mt-10 gap-10 md:px-20 px-5 flex-1">
       <header className="flex flex-col items-center gap-2">
         <h1 className="font-bold text-3xl text-(--main-red) text-center">Chez vous, partout et ailleurs</h1>
         <p className="text-center">Avec Kasa, vivez des séjours uniques dans des hébergements chaleureux, sélectionnés avec soin par nos hôtes.</p>
@@ -53,6 +53,6 @@ export default async function Home() {
           </article>
         </div>
       </section>
-    </main>
+    </section>
   );
 }

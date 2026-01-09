@@ -1,0 +1,60 @@
+"use client";
+
+import { useAuth } from "@/lib/context/authContext";
+import { useRouter } from "next/navigation";
+
+interface LoginResponse {
+  token: string;
+}
+
+export default function LoginPage() {
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    const res = await fetch("API_URL/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "test@test.com",
+        password: "password",
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Erreur de connexion");
+    }
+
+    const data: LoginResponse = await res.json();
+    login(data.token);
+    router.replace("/");
+  };
+
+  return (
+    <section className="flex flex-1 items-center justify-center px-5 py-10 lg:px-0 lg:py-10">
+      <div className="p-2 lg:py-10 xl:py-15 lg:px-20 xl:px-40 lg:w-2/4 rounded-2xl border border-[#F5F5F5] bg-white items-center flex flex-col gap-10">
+        <div className="flex flex-col gap-5">
+          <h1 className="font-bold text-3xl text-(--main-red) text-center">Heureux de vous revoir</h1>
+          <p className="text-center">Connectez-vous pour retrouver vos réservations, vos annonces et tout ce qui rend vos séjours uniques.</p>
+        </div>
+        <form action="" className="flex flex-col gap-5 w-full items-center">
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="mail" className="font-medium">
+              Adresse email
+            </label>
+            <input type="email" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
+          </div>
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="password" className="font-medium">
+              Mot de passe
+            </label>
+            <input type="password" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
+          </div>
+        <button className="text-white bg-(--main-red) rounded-xl w-60 h-10 mt-10">Se connecter</button>
+        </form>
+        <p className="text-(--main-red) text-xs md:text-sm">Mot de passe oublié</p>
+        <p className="text-(--main-red) text-xs md:text-sm">Pas encore de compte ? Inscrivez-vous</p>
+      </div>
+    </section>
+  );
+}

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import type { Property } from "@/types";
 import Link from "next/link";
-export default function PropertyCard({ cover, title, location, price_per_night, slug, id, description }: Property) {
+export default function PropertyCard({ cover, title, location, price_per_night, slug, id }: Property) {
   
 
   return (

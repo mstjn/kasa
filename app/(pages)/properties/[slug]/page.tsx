@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main className="flex-1 max-w-350 mx-auto flex flex-col lg:mt-20 mt-5 gap-6 mb-10 px-2">
+    <section className="flex-1 max-w-350 mx-auto flex flex-col lg:mt-20 mt-5 gap-6 mb-10 px-2">
       <header>
         <Link href="/" className="flex gap-2 bg-[#F5F5F5] h-9 w-48 items-center justify-center rounded-md">
           <Image src="/arrow.svg" width={15} height={15} alt="retour" />
@@ -97,8 +97,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <h2 className="text-lg font-medium">Votre hôte</h2>
 
           <div className="flex gap-5 items-center">
-            <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host.name}`} className="rounded-lg" />
-            <p>{property.host.name}</p>
+            <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host?.name}`} className="rounded-lg" />
+            <p>{property.host?.name}</p>
             <button className="flex gap-2 bg-[#F5F5F5] rounded-lg p-2">
               <Image src="/fav.svg" width={19} height={23} alt="Icone favori" />
               <p className="text-lg">3</p>
@@ -145,8 +145,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <h2 className="text-lg font-medium">Votre hôte</h2>
 
           <div className="flex gap-5 items-center">
-            <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host.name}`} className="rounded-lg" />
-            <p>{property.host.name}</p>
+            <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host?.name}`} className="rounded-lg" />
+            <p>{property.host?.name}</p>
             <button className="flex gap-2 bg-[#F5F5F5] rounded-lg p-2">
               <Image src="/fav.svg" width={19} height={23} alt="Icone favori" />
               <p className="text-lg">3</p>
@@ -159,6 +159,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </article>
       </section>
-    </main>
+    </section>
   );
 }
