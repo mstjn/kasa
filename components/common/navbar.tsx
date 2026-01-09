@@ -28,7 +28,7 @@ export default function Navbar() {
           <li className="text-(--main-red) font-semibold cursor-pointer">+ Ajouter un logement</li>
 
           <div className="flex items-center gap-3 cursor-pointer">
-            <Image src="/Heart.svg" height={20} width={20} alt="Favoris" />
+           <Link href="/favoris"><Image src="/Heart.svg" height={20} width={20} alt="Favoris" /></Link> 
             <Image src="/Comment.svg" height={20} width={20} alt="Messagerie" />
           </div>
         </ul>

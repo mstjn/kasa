@@ -12,10 +12,10 @@ export interface Property {
     description : string
     cover : string
     price_per_night : number
-    rating_count : number
-    rating_avg : number
+    rating_count? : number
+    rating_avg? : number
     location : string
-    host : User
+    host? : User
     pictures? : string[]
     tags? : string[] 
     equipments? : string[]

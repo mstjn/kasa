@@ -41,7 +41,7 @@ export default function MobileCarousel({ images }: Props) {
     <div className="relative w-full lg:hidden">
       <div
         ref={carouselRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+        className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-2"
         onScroll={(e) => {
           const el = e.currentTarget;
           const width = el.clientWidth;
