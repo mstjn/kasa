@@ -1,5 +1,8 @@
+"use client"
+import { useAuth } from "@/lib/context/authContext";
 import Image from "next/image";
-export default function page() {
+export default function Page() {
+  const { logout } = useAuth()
   return (
     <section className="flex-1 items-center flex flex-col mt-10 mb-10 gap-10 px-5 xl:px-0">
       <header className="flex flex-col items-center gap-5 ">
@@ -37,6 +40,7 @@ export default function page() {
           </p>
         </div>
       </section>
+      <button className="text-white bg-(--main-red) rounded-xl w-60 h-10 mt-10" onClick={logout}>Se déconnecter</button>
     </section>
   );
 }
