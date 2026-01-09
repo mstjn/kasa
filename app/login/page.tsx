@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/lib/context/authContext";
 import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
 
 interface LoginResponse {
   token: string;
@@ -10,16 +11,22 @@ interface LoginResponse {
 export default function LoginPage() {
   const { login } = useAuth();
   const router = useRouter();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-  const handleLogin = async () => {
-    const res = await fetch("API_URL/login", {
+  const handleLogin = async (e : FormEvent) => {
+    e.preventDefault()
+   const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: "test@test.com",
-        password: "password",
+        email: email,
+        password: password,
       }),
     });
+
+    console.log(res);
+    
 
     if (!res.ok) {
       throw new Error("Erreur de connexion");
@@ -37,18 +44,18 @@ export default function LoginPage() {
           <h1 className="font-bold text-3xl text-(--main-red) text-center">Heureux de vous revoir</h1>
           <p className="text-center">Connectez-vous pour retrouver vos réservations, vos annonces et tout ce qui rend vos séjours uniques.</p>
         </div>
-        <form action="" className="flex flex-col gap-5 w-full items-center">
+        <form action="" className="flex flex-col gap-5 w-full items-center" onSubmit={handleLogin}>
           <div className="flex flex-col gap-1 w-full">
             <label htmlFor="mail" className="font-medium">
               Adresse email
             </label>
-            <input type="email" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
           </div>
           <div className="flex flex-col gap-1 w-full">
             <label htmlFor="password" className="font-medium">
               Mot de passe
             </label>
-            <input type="password" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
+            <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
           </div>
         <button className="text-white bg-(--main-red) rounded-xl w-60 h-10 mt-10">Se connecter</button>
         </form>

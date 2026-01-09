@@ -1,7 +1,7 @@
 // retrieve a list of properties
 export async function getProperties() {
   try {
-    const res = await fetch(`${process.env.URL_API}api/properties`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}api/properties`, {
       cache: "no-store",
     });
 
@@ -19,7 +19,7 @@ export async function getProperties() {
 // retrieve a single property
 export async function getPropertyById(id: string | undefined) {
   try {
-    const res = await fetch(`${process.env.URL_API}api/properties/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}api/properties/${id}`, {
       cache: "no-store",
     });
 
