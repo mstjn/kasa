@@ -32,7 +32,6 @@ export default function LoginPage() {
     }
 
     const data: LoginResponse = await res.json();
-    console.log(data);
     
     login(data.token, data.user.id);
     router.replace("/");

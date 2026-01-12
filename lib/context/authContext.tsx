@@ -12,9 +12,9 @@ import {
 
 interface AuthContextType {
   token: string | null;
-  userId: string | null;
+  userId: number | null;
   loading: boolean;
-  login: (token: string, userId: string) => void;
+  login: (token: string, userId: number) => void;
   logout: () => void;
 }
 
@@ -22,7 +22,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userId, setUserId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
