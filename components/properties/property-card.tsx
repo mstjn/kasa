@@ -1,8 +1,14 @@
-"use client";
+"use client"
 import Image from "next/image";
 import type { Property } from "@/types";
 import Link from "next/link";
+import { addToFavorite } from "@/lib/api/api";
+import { useAuth } from "@/lib/context/authContext";
 export default function PropertyCard({ cover, title, location, price_per_night, slug, id }: Property) {
+  const {token} = useAuth()
+  async function add(id : string, token : string | null) {
+    const data = await addToFavorite(id, token) 
+  }
   
 
   return (
@@ -20,6 +26,7 @@ export default function PropertyCard({ cover, title, location, price_per_night, 
       cursor-pointer
     "
     aria-label="Ajouter aux favoris"
+    onClick={() => add(id, token)}
   >
     <Image src="/Heart-grey.svg" alt="" width={20} height={20} />
   </button>

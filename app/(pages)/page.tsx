@@ -1,4 +1,4 @@
-import { getProperties } from "@/lib/api/properties/api";
+import { getProperties } from "@/lib/api/api";
 import Image from "next/image";
 import PropertyCard from "@/components/properties/property-card";
 import type { Property } from "@/types";

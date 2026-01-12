@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPropertyById } from "@/lib/api/properties/api";
+import { getPropertyById } from "@/lib/api/api";
 import MobileCarousel from "@/components/properties/mobile-carousel";
 import Link from "next/link";
 import Image from "next/image";

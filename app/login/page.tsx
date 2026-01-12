@@ -1,11 +1,13 @@
 "use client";
 
 import { useAuth } from "@/lib/context/authContext";
+import { User } from "@/types";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 interface LoginResponse {
   token: string;
+  user: User
 }
 
 export default function LoginPage() {
@@ -25,15 +27,14 @@ export default function LoginPage() {
       }),
     });
 
-    console.log(res);
-    
-
     if (!res.ok) {
       throw new Error("Erreur de connexion");
     }
 
     const data: LoginResponse = await res.json();
-    login(data.token);
+    console.log(data);
+    
+    login(data.token, data.user.id);
     router.replace("/");
   };
 

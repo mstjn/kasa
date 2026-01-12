@@ -1,43 +1,59 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+
 "use client";
 
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   ReactNode,
 } from "react";
 
 interface AuthContextType {
   token: string | null;
+  userId: string | null;
   loading: boolean;
-  login: (token: string) => void;
+  login: (token: string, userId: string) => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState<string | null>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("token");
-    }
-    return null;
-  });
+  const [token, setToken] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const [loading] = useState(false);
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
 
-  const login = (token: string) => {
+    setToken(storedToken);
+    setUserId(storedUserId);
+    setLoading(false);
+  }, []);
+
+  const login = (token: string, userId: string) => {
     localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
+
     setToken(token);
+    setUserId(userId);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+
     setToken(null);
+    setUserId(null);
   };
 
   return (
-    <AuthContext.Provider value={{ token, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{ token, userId, loading, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
