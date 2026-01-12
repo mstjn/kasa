@@ -107,7 +107,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <div className="flex flex-col gap-2">
             <button className="flex justify-center items-center bg-(--main-red) text-white rounded-lg h-9">Contacter l&apos;hôte</button>
-            <button className="flex justify-center items-center bg-(--main-red) text-white rounded-lg h-9">Envoyer un message</button>
+            <Link href="/messages" className="flex justify-center items-center bg-(--main-red) text-white rounded-lg h-9">Envoyer un message</Link>
           </div>
         </article>
       </section>
@@ -155,7 +155,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <div className="flex flex-col gap-2">
             <button className="flex justify-center items-center bg-(--main-red) text-white rounded-lg h-9">Contacter l&apos;hôte</button>
-            <button className="flex justify-center items-center bg-(--main-red) text-white rounded-lg h-9">Envoyer un message</button>
+            <Link href="/messages" className="flex justify-center items-center bg-(--main-red) text-white rounded-lg h-9">Envoyer un message</Link>
           </div>
         </article>
       </section>

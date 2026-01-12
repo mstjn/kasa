@@ -28,8 +28,9 @@ export default function Navbar() {
           <li className="text-(--main-red) font-semibold cursor-pointer">+ Ajouter un logement</li>
 
           <div className="flex items-center gap-3 cursor-pointer">
-           <Link href="/favoris"><Image src="/Heart.svg" height={20} width={20} alt="Favoris" /></Link> 
-            <Image src="/Comment.svg" height={20} width={20} alt="Messagerie" />
+           <Link href="/favorites"><Image src="/Heart.svg" height={20} width={20} alt="Favoris" /></Link> 
+           <Link href="/messages"><Image src="/Comment.svg" height={20} width={20} alt="Messagerie" /></Link>
+            
           </div>
         </ul>
 
@@ -66,12 +67,12 @@ export default function Navbar() {
   `}
         >
           <ul className="flex flex-col text-xl divide-y divide-gray-100 px-6 py-6 bg-white">
-            <li className="py-4 cursor-pointer">Accueil</li>
-            <li className="py-4 cursor-pointer">À propos</li>
+            <Link href="/" className="py-4 cursor-pointer">Accueil</Link>
+            <Link href="/about" className="py-4 cursor-pointer">À propos</Link>
 
-            <li className="py-4 cursor-pointer ">Messagerie</li>
+            <Link href="/messages" className="py-4 cursor-pointer ">Messagerie</Link>
 
-            <li className="py-4 cursor-pointer ">Favoris</li>
+            <Link href="/favorites" className="py-4 cursor-pointer ">Favoris</Link>
 
             <button
               className="

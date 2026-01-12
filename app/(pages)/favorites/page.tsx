@@ -9,32 +9,22 @@ import { useEffect, useState } from "react";
 export default function Page() {
   const { token, loading, userId } = useAuth();
   const [favorites, setFavorites] = useState<Property[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (loading || !token) return;
+    if (loading || !token || !userId) return;
 
     const fetchFavorites = async () => {
       try {
         const data = await getFavorites(userId, token);
         setFavorites(data);
-      } catch (err) {
-        setError("Impossible de charger les favoris");
+      } catch {
+        console.log("Impossible de charger les favoris");
       }
     };
 
     fetchFavorites();
   }, [token, loading, userId]);
 
-  if (loading) return null; 
-
-  if (!token) {
-    return <p className="text-center">Vous devez être connecté</p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-red-500">{error}</p>;
-  }
 
   return (
     <section className="flex-1 xl:px-25 px-5">
@@ -50,7 +40,16 @@ export default function Page() {
 
       <section className="grid justify-center grid-cols-[355px_355px_355px] gap-10">
         {favorites.map((fav) => (
-            <PropertyCard key={fav.id} {...fav} />
+          <PropertyCard
+            key={fav.id}
+            {...fav}
+            isFavorite={true}
+            onToggleFavorite={(id) => {
+              setFavorites((prev) =>
+                prev.filter((property) => property.id !== id)
+              );
+            }}
+          />
         ))}
       </section>
     </section>

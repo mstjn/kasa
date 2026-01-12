@@ -38,6 +38,8 @@ export async function getPropertyById(id: string | undefined) {
     throw error;
   }
 }
+
+// add to favorites
 export async function addToFavorite(id: string, token: string | null) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL_API}api/properties/${id}/favorite`,
@@ -79,4 +81,24 @@ export async function getFavorites(idUser : number | null, token : string | null
     console.error("getFavorites error:", error);
     throw error;
   }
+}
+
+// remove from favorites
+export async function removeFromFavorite(id : string, token: string | null) {
+ const res = await fetch(
+    `${process.env.NEXT_PUBLIC_URL_API}api/properties/${id}/favorite`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error(`Failed to remove favorite (${res.status})`);
+  }
+
+  return res.json();
 }
