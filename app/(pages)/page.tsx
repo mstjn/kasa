@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 
 export default function Home() {
-  const { token, userId, loading } = useAuth();
+  const { token, userId } = useAuth();
 
   const [properties, setProperties] = useState<Property[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
@@ -20,7 +20,6 @@ export default function Home() {
       try {
         const propertiesData = await getProperties();
 
-        // utilisateur connecté → on récupère ses favoris
         if (token && userId) {
           const favoritesData = await getFavorites(userId, token);
           setFavoriteIds(

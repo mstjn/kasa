@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/lib/context/authContext";
 import { User } from "@/types";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
@@ -37,13 +38,11 @@ export default function LoginPage() {
     router.replace("/");
 
     }
-
-   
   };
 
   return (
     <section className="flex flex-1 items-center justify-center px-5 py-10 lg:px-0 lg:py-10">
-      <div className="p-2 lg:py-10 xl:py-15 lg:px-20 xl:px-40 lg:w-2/4 rounded-2xl border border-[#F5F5F5] bg-white items-center flex flex-col gap-10">
+      <div className="p-2 lg:py-6 xl:py-15 lg:px-20 xl:px-35 lg:w-2/4 rounded-2xl border border-[#F5F5F5] bg-white items-center flex flex-col gap-10">
         <div className="flex flex-col gap-5">
           <h1 className="font-bold text-3xl text-(--main-red) text-center">Heureux de vous revoir</h1>
           <p className="text-center">Connectez-vous pour retrouver vos réservations, vos annonces et tout ce qui rend vos séjours uniques.</p>
@@ -66,7 +65,7 @@ export default function LoginPage() {
         <button className="text-white bg-(--main-red) rounded-xl w-60 h-10 mt-10">Se connecter</button>
         </form>
         <p className="text-(--main-red) text-xs md:text-sm">Mot de passe oublié</p>
-        <p className="text-(--main-red) text-xs md:text-sm">Pas encore de compte ? Inscrivez-vous</p>
+        <p className="text-(--main-red) text-xs md:text-sm">Pas encore de compte ? <Link href="/register">Inscrivez-vous</Link></p>
       </div>
     </section>
   );
