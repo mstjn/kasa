@@ -6,12 +6,14 @@ import PropertyCard from "@/components/properties/property-card";
 import type { Property } from "@/types";
 import { useAuth } from "@/lib/context/authContext";
 import { useEffect, useState } from "react";
+import Loading from "./loading";
 
 export default function Home() {
-  const { token, userId } = useAuth();
+  const { token, userId, loading } = useAuth();
 
   const [properties, setProperties] = useState<Property[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +31,17 @@ export default function Home() {
         setProperties(propertiesData);
       } catch (error) {
         console.error("Erreur chargement home", error);
-      } 
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
   }, [token, userId]);
+
+  if (isLoading) {
+    return (<Loading />)
+  }
 
 
   return (
