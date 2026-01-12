@@ -15,6 +15,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState(false)
 
   const handleLogin = async (e : FormEvent) => {
     e.preventDefault()
@@ -28,13 +29,16 @@ export default function LoginPage() {
     });
 
     if (!res.ok) {
-      throw new Error("Erreur de connexion");
-    }
-
-    const data: LoginResponse = await res.json();
+      setError(true)
+    }else {
+       const data: LoginResponse = await res.json();
     
     login(data.token, data.user.id);
     router.replace("/");
+
+    }
+
+   
   };
 
   return (
@@ -49,14 +53,16 @@ export default function LoginPage() {
             <label htmlFor="mail" className="font-medium">
               Adresse email
             </label>
-            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className={`px-2 outline-none h-10 border rounded ${error ? "border-red-400" : "border-[#F5F5F5]"}`} />
           </div>
           <div className="flex flex-col gap-1 w-full">
             <label htmlFor="password" className="font-medium">
               Mot de passe
             </label>
-            <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" className="px-2 outline-none h-10 border border-[#F5F5F5] rounded" />
+            <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" className={`px-2 outline-none h-10 border rounded ${error ? "border-red-400" : "border-[#F5F5F5]"}`} />
           </div>
+         {error &&  <p className="text-red-400">Les identifiants sont incorrects</p>}
+
         <button className="text-white bg-(--main-red) rounded-xl w-60 h-10 mt-10">Se connecter</button>
         </form>
         <p className="text-(--main-red) text-xs md:text-sm">Mot de passe oublié</p>
