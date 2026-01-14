@@ -16,16 +16,7 @@ interface Props {
   onToggleFavorite: (id: string, isFavorite: boolean) => void;
 }
 
-export default function PropertyCard({
-  id,
-  cover,
-  title,
-  location,
-  price_per_night,
-  slug,
-  isFavorite,
-  onToggleFavorite,
-}: Props) {
+export default function PropertyCard({ id, cover, title, location, price_per_night, slug, isFavorite, onToggleFavorite }: Props) {
   const { token } = useAuth();
 
   const handleToggle = async () => {
@@ -56,32 +47,28 @@ export default function PropertyCard({
         className={`
           absolute top-3 right-3
           rounded-lg p-2 z-10 transition
+          w-9 h-9
+          flex
+          justify-center
+          items-center
           ${isFavorite ? "bg-(--main-red)" : "bg-white/90"}
           hover:scale-105
         `}
       >
-        <Image
-          src="/Heart-grey.svg"
-          alt=""
-          width={20}
-          height={20}
-        />
+        <Image src={`${isFavorite ? "/white-heart.svg" : "/Heart-grey.svg"}`} alt="" width={`${isFavorite ? 13 : 20}`} height={`${isFavorite ? 13 : 20}`} />
       </button>
 
       <Link href={`/properties/${slug}--${id}`}>
         <div>
           <div className="relative w-full aspect-4/4">
-            <Image src={cover} fill className="object-cover" alt={title} />
+            <Image src={cover} fill className="object-cover" alt={"image de : " + title} />
           </div>
 
           <figcaption className="px-3 pb-5 space-y-1">
             <h2 className="font-semibold text-lg">{title}</h2>
             <p className="text-sm text-gray-500">{location}</p>
             <p className="text-sm text-gray-500 mt-12">
-              <span className="font-medium text-black">
-                {price_per_night}€
-              </span>{" "}
-              par nuit
+              <span className="font-medium text-black">{price_per_night}€</span> par nuit
             </p>
           </figcaption>
         </div>

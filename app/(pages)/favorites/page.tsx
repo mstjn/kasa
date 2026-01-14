@@ -55,7 +55,7 @@ export default function Page() {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="h-[420px] rounded-lg bg-gray-200 animate-pulse"
+            className="h-105 rounded-lg bg-gray-200 animate-pulse"
           />
         ))}
       </section>

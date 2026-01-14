@@ -69,11 +69,46 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return null;
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    name: property.title,
+    description: property.description,
+    image: property.pictures,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: property.location,
+      addressCountry: "FR",
+    },
+    amenityFeature: property.equipments?.map((eq) => ({
+      "@type": "LocationFeatureSpecification",
+      name: eq,
+      value: true,
+    })),
+    makesOffer: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+    },
+    host: {
+      "@type": "Person",
+      name: property.host.name,
+      image: property.host.picture,
+    },
+    url: `https://kasa.com/properties/${p.slug}`,
+  };
+
   return (
     <section className="flex-1 max-w-350 mx-auto flex flex-col lg:mt-20 mt-5 gap-6 mb-10 px-2">
+       <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <header>
         <Link href="/" className="flex gap-2 bg-[#F5F5F5] h-9 w-48 items-center justify-center rounded-md">
-          <Image src="/arrow.svg" width={15} height={15} alt="retour" />
+          <Image src="/arrow.svg" width={15} height={15} alt="icone de retour" />
           <p className="text-[#565656] font-medium">Retour aux annonces</p>
         </Link>
       </header>
@@ -81,7 +116,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <section className="flex gap-4 items-start">
         <div className="xl:grid xl:grid-cols-[370px_220px_220px] flex flex-col w-full xl:grid-rows-2 gap-2 lg:h-89 h-full">
           <div className="relative row-span-2 h-full hidden lg:block">
-            <Image src={property.pictures[0]} alt="Property main" fill className="object-cover rounded-xl" priority />
+            <Image src={property.pictures[0]} alt="image principale" fill className="object-cover rounded-xl" priority />
           </div>
           <div className="col-span-2 row-span-2 h-full lg:grid grid-cols-2 grid-rows-2 gap-2 hidden">
             {property.pictures.slice(1, 5).map((img, index) => (
@@ -97,8 +132,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <h2 className="text-lg font-medium">Votre hôte</h2>
 
           <div className="flex gap-5 items-center">
-            <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host?.name}`} className="rounded-lg" />
-            <p>{property.host?.name}</p>
+            <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host.name}`} className="rounded-lg" />
+            <p>{property.host.name}</p>
             <button className="flex gap-2 bg-[#F5F5F5] rounded-lg p-2">
               <Image src="/fav.svg" width={19} height={23} alt="Icone favori" />
               <p className="text-lg">3</p>
@@ -146,7 +181,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <div className="flex gap-5 items-center">
             <Image src={property.host.picture} height={82} width={82} alt={`Portrait de ${property.host?.name}`} className="rounded-lg" />
-            <p>{property.host?.name}</p>
+            <p>{property.host.name}</p>
             <button className="flex gap-2 bg-[#F5F5F5] rounded-lg p-2">
               <Image src="/fav.svg" width={19} height={23} alt="Icone favori" />
               <p className="text-lg">3</p>

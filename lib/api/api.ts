@@ -61,7 +61,7 @@ export async function addToFavorite(id: string, token: string | null) {
 
 
 // get favorites
-export async function getFavorites(idUser : number | null, token : string | null) {
+export async function getFavorites(idUser : string | null, token : string | null) {
    try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}api/users/${idUser}/favorites`,  {
       method: "GET",

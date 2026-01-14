@@ -1,7 +1,7 @@
 export interface User {
     id: number 
     name : string
-    picture? : string
+    picture : string
 }
 
 
@@ -15,8 +15,8 @@ export interface Property {
     rating_count? : number
     rating_avg? : number
     location : string
-    host? : User
-    pictures? : string[]
+    host : User
+    pictures : string[]
     tags? : string[] 
     equipments? : string[]
 }

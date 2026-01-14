@@ -56,13 +56,16 @@ export default function Home() {
       </header>
 
       <section className="relative w-full max-w-7xl sm:aspect-16/6 aspect-16/20 overflow-hidden rounded-2xl">
-        <Image
-          src="/Home-picture.jpg"
-          fill
-          className="object-cover"
-          alt="Maison avec hébergement Kasa"
-          priority
-        />
+<Image
+  src="/Home-picture.jpg"
+  alt="Maison avec hébergement Kasa"
+  fill
+  priority
+  fetchPriority="high"
+  className="object-cover"
+/>
+
+
       </section>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">

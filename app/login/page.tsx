@@ -34,7 +34,7 @@ export default function LoginPage() {
     }else {
        const data: LoginResponse = await res.json();
     
-    login(data.token, data.user.id);
+    login(data.token, data.user.id.toString());
     router.replace("/");
 
     }
