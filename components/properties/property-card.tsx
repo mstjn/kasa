@@ -5,6 +5,9 @@ import Link from "next/link";
 import { addToFavorite, removeFromFavorite } from "@/lib/api/api";
 import { useAuth } from "@/lib/context/authContext";
 
+/**
+ * Propriétés attendues par le composant PropertyCard.
+ */
 interface Props {
   id: string;
   cover: string;
@@ -16,9 +19,27 @@ interface Props {
   onToggleFavorite: (id: string, isFavorite: boolean) => void;
 }
 
+/**
+ * Carte de présentation d'un logement.
+ *
+ * - Affiche les informations principales du logement
+ * - Permet d'ajouter ou retirer un logement des favoris
+ * - Utilise une mise à jour optimiste de l'UI
+ * - Redirige vers la page de détail du logement
+ *
+ * @component
+ * @param {Props} props - Données du logement et callbacks associés
+ */
 export default function PropertyCard({ id, cover, title, location, price_per_night, slug, isFavorite, onToggleFavorite }: Props) {
   const { token } = useAuth();
 
+   /**
+   * Gère l'ajout ou la suppression d'un logement des favoris.
+   *
+   * - Met à jour l'interface immédiatement (optimistic UI)
+   * - Appelle l'API correspondante
+   * - Annule la modification en cas d'erreur
+   */
   const handleToggle = async () => {
     if (!token) return;
 

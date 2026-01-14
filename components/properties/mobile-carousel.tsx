@@ -7,15 +7,33 @@ type Props = {
   images: string[];
 };
 
+/**
+ * Carousel mobile d'images pour un logement.
+ *
+ * - Affiché uniquement sur mobile
+ * - Gère le scroll horizontal avec effet infini
+ * - Affiche des indicateurs de pagination
+ * - Cas particulier géré lorsqu'une seule image est disponible
+ *
+ * @component
+ * @param {Props} props
+ * @param {string[]} props.images - Liste des images du logement
+ */
 export default function MobileCarousel({ images }: Props) {
   
   const carouselRef = useRef<HTMLDivElement>(null);
   
-
+/**
+   * Tableau des slides incluant des clones
+   * pour permettre un effet de défilement infini.
+   */
   const slides = [images[images.length - 1], ...images, images[0]];
 
   const [index, setIndex] = useState(1);
 
+   /**
+   * Positionne le scroll initial sur la première image réelle.
+   */
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;

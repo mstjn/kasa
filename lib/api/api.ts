@@ -1,4 +1,9 @@
-// retrieve a list of properties
+/**
+ * Récupère la liste de tous les logements.
+ *
+ * @returns {Promise<any>} Liste des logements
+ * @throws {Error} Erreur lors de la récupération des données
+ */
 export async function getProperties() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}api/properties`, {
@@ -16,7 +21,13 @@ export async function getProperties() {
     throw error;
   }
 }
-// retrieve a single property
+/**
+ * Récupère un logement à partir de son identifiant.
+ *
+ * @param {string | undefined} id - Identifiant du logement
+ * @returns {Promise<any | null>} Logement ou null si non trouvé
+ * @throws {Error} Erreur lors de la récupération des données
+ */
 export async function getPropertyById(id: string | undefined) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}api/properties/${id}`, {
@@ -39,7 +50,14 @@ export async function getPropertyById(id: string | undefined) {
   }
 }
 
-// add to favorites
+/**
+ * Ajoute un logement aux favoris de l'utilisateur.
+ *
+ * @param {string} id - Identifiant du logement
+ * @param {string | null} token - Token d'authentification utilisateur
+ * @returns {Promise<any>} Réponse de l'API
+ * @throws {Error} Erreur lors de l'ajout aux favoris
+ */
 export async function addToFavorite(id: string, token: string | null) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL_API}api/properties/${id}/favorite`,
@@ -60,7 +78,14 @@ export async function addToFavorite(id: string, token: string | null) {
 }
 
 
-// get favorites
+/**
+ * Récupère les logements favoris d'un utilisateur.
+ *
+ * @param {string | null} idUser - Identifiant de l'utilisateur
+ * @param {string | null} token - Token d'authentification utilisateur
+ * @returns {Promise<any>} Liste des favoris
+ * @throws {Error} Erreur lors de la récupération des favoris
+ */
 export async function getFavorites(idUser : string | null, token : string | null) {
    try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}api/users/${idUser}/favorites`,  {
@@ -83,7 +108,15 @@ export async function getFavorites(idUser : string | null, token : string | null
   }
 }
 
-// remove from favorites
+
+/**
+ * Supprime un logement des favoris de l'utilisateur.
+ *
+ * @param {string} id - Identifiant du logement
+ * @param {string | null} token - Token d'authentification utilisateur
+ * @returns {Promise<any>} Réponse de l'API
+ * @throws {Error} Erreur lors de la suppression des favoris
+ */
 export async function removeFromFavorite(id : string, token: string | null) {
  const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL_API}api/properties/${id}/favorite`,

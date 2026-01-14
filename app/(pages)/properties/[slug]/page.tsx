@@ -6,10 +6,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { Property } from "@/types";
 
+/**
+ * Extrait l'identifiant d'un logement à partir de son slug.
+ *
+ * @param {string | undefined} slug - Slug de l'annonce (ex: "appartement-paris--123")
+ * @returns {string | undefined} Identifiant du logement
+ */
 function extractIdFromSlug(slug: string | undefined) {
   return slug?.split("--").pop();
 }
 
+/**
+ * Génère les métadonnées SEO dynamiques de la page logement.
+ *
+ * - Title et description
+ * - Open Graph (réseaux sociaux)
+ * - Twitter Card
+ * - Canonical URL
+ *
+ * @param {{ params: { slug: string } }} props
+ * @returns {Promise<Metadata>} Métadonnées de la page
+ */
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const p = await params;
   const id: string | undefined = extractIdFromSlug(p.slug);
@@ -57,6 +74,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
   };
 }
+/**
+ * Page de détail d'un logement.
+ *
+ * - Récupère les données du logement depuis l'API
+ * - Gère le cas d'une annonce inexistante
+ * - Intègre des données structurées (JSON-LD) pour le SEO
+ * - Affiche les informations, images et hôte du logement
+ *
+ * @component
+ */
 export default async function Page({ params }: { params: { slug: string } }) {
   const p = await params;
   const id: string | undefined = extractIdFromSlug(p.slug);
@@ -69,6 +96,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return null;
   }
 
+  /**
+   * Données structurées Schema.org (JSON-LD)
+   * utilisées pour améliorer la compréhension de la page par les moteurs de recherche.
+   */
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",

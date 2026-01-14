@@ -6,11 +6,25 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
+
+/**
+ * Réponse attendue lors de l'authentification utilisateur.
+ */
 interface LoginResponse {
   token: string;
   user: User
 }
 
+/**
+ * Page de connexion utilisateur.
+ *
+ * - Permet à l'utilisateur de se connecter via email et mot de passe
+ * - Appelle l'API d'authentification
+ * - Stocke le token et l'identifiant utilisateur via le contexte d'auth
+ * - Redirige vers la page d'accueil après connexion
+ *
+ * @component
+ */
 export default function LoginPage() {
   const { login } = useAuth();
   const router = useRouter();
@@ -18,6 +32,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [error, setError] = useState(false)
 
+  /**
+   * Gère la soumission du formulaire de connexion.
+   *
+   * @param {FormEvent} e - Événement de soumission du formulaire
+   */
   const handleLogin = async (e : FormEvent) => {
     e.preventDefault()
    const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}auth/login`, {

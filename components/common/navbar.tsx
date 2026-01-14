@@ -3,6 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+/**
+ * Barre de navigation principale de l'application.
+ *
+ * - Navigation desktop et mobile
+ * - Menu mobile avec ouverture/fermeture
+ * - Liens vers les pages principales (accueil, favoris, messagerie)
+ * - Attributs ARIA pour l’accessibilité
+ *
+ * @component
+ */
 export default function Navbar() {
   const [changeMenu, setChangeMenu] = useState(false);
 

@@ -8,6 +8,16 @@ import { useAuth } from "@/lib/context/authContext";
 import { useEffect, useState } from "react";
 import Loading from "./loading";
 
+/**
+ * Page d'accueil de l'application.
+ *
+ * - Récupère la liste des logements
+ * - Récupère les favoris de l'utilisateur connecté
+ * - Affiche un état de chargement
+ * - Permet d'ajouter ou retirer un logement des favoris
+ *
+ * @component
+ */
 export default function Home() {
   const { token, userId } = useAuth();
 
@@ -15,6 +25,9 @@ export default function Home() {
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true)
 
+    /**
+   * Charge les logements et les favoris utilisateur au chargement de la page.
+   */
   useEffect(() => {
     const fetchData = async () => {
       try {

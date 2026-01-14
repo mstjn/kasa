@@ -6,12 +6,24 @@ import { useAuth } from "@/lib/context/authContext";
 import { Property } from "@/types";
 import { useEffect, useState } from "react";
 
+/**
+ * Page des favoris utilisateur.
+ *
+ * - Récupère les logements favoris de l'utilisateur connecté
+ * - Affiche un état de chargement avec skeleton
+ * - Permet de retirer un logement des favoris
+ *
+ * @component
+ */
 export default function Page() {
   const { token, loading, userId } = useAuth();
   const [favorites, setFavorites] = useState<Property[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
 
+  /**
+   * Charge les favoris de l'utilisateur une fois l'authentification prête.
+   */
  useEffect(() => {
   if (loading || !token || !userId) return;
 

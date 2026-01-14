@@ -3,6 +3,17 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
+/**
+ * Page d'inscription utilisateur.
+ *
+ * - Permet la création d'un compte utilisateur
+ * - Valide l'acceptation des conditions d'utilisation
+ * - Envoie les données d'inscription à l'API
+ * - Gère les erreurs courantes (compte existant, erreur serveur)
+ * - Redirige vers la page de connexion après succès
+ *
+ * @component
+ */
 export default function RegisterPage() {
   const router = useRouter();
 
@@ -13,6 +24,15 @@ export default function RegisterPage() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /**
+   * Gère la soumission du formulaire d'inscription.
+   *
+   * - Vérifie l'acceptation des conditions d'utilisation
+   * - Envoie les données utilisateur à l'API
+   * - Gère les différents cas d'erreur
+   *
+   * @param {FormEvent} e - Événement de soumission du formulaire
+   */
   const handleRegister = async (e: FormEvent) => {
   e.preventDefault();
   setError(null);

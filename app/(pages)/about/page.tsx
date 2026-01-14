@@ -1,6 +1,14 @@
 "use client"
 import { useAuth } from "@/lib/context/authContext";
 import Image from "next/image";
+/**
+ * Page "À propos" de l'application.
+ *
+ * Présente la mission et les valeurs de la plateforme Kasa.
+ * Permet également à l'utilisateur authentifié de se déconnecter.
+ *
+ * @component
+ */
 export default function Page() {
   const { logout } = useAuth()
   return (
