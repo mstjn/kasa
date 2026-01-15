@@ -1,14 +1,10 @@
 import type { MetadataRoute } from "next";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3001");
+  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:3001";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
@@ -20,9 +16,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const properties = await fetch(`${API_URL}/api/properties`, {
+  const properties = await fetch(`${API_URL}api/properties`, {
     cache: "no-store",
-  }).then(res => res.json()).catch(() => []);
+  })
+    .then((res) => res.json())
+    .catch(() => []);
 
   const propertyPages: MetadataRoute.Sitemap = properties.map(
     (p: { slug: string; id: string }) => ({
