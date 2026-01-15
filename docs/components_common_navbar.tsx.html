@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/common/navbar.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/common/navbar.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+/**
+ * Barre de navigation principale de l'application.
+ *
+ * - Navigation desktop et mobile
+ * - Menu mobile avec ouverture/fermeture
+ * - Liens vers les pages principales (accueil, favoris, messagerie)
+ * - Attributs ARIA pour l’accessibilité
+ *
+ * @component
+ */
+export default function Navbar() {
+  const [changeMenu, setChangeMenu] = useState(false);
+
+  return (
+    &lt;header className="relative z-50">
+      &lt;nav
+        aria-label="Navigation principale"
+        className="
+          mx-auto
+          w-full max-w-4xl
+          rounded-xl
+          bg-white
+          sm:shadow-[0_4px_4px_0_#B6B6B60D]
+        "
+      >
+        &lt;ul
+          role="menubar"
+          className="items-center justify-between px-6 h-16 text-sm md:text-lg hidden sm:flex"
+        >
+          &lt;li role="none">
+            &lt;Link role="menuitem" href="/">Accueil&lt;/Link>
+          &lt;/li>
+
+          &lt;li role="none">
+            &lt;Link role="menuitem" href="/about">À propos&lt;/Link>
+          &lt;/li>
+
+          &lt;Image
+            src="/Logo-grand.svg"
+            height={40}
+            width={140}
+            alt="Logo du site"
+          />
+
+          &lt;li role="menuitem" className="text-(--main-red) font-semibold cursor-pointer">
+            + Ajouter un logement
+          &lt;/li>
+
+          &lt;div className="flex items-center gap-3">
+            &lt;Link href="/favorites" aria-label="Voir les favoris">
+              &lt;Image src="/Heart.svg" height={20} width={20} alt="" />
+            &lt;/Link>
+
+            &lt;Link href="/messages" aria-label="Accéder à la messagerie">
+              &lt;Image src="/Comment.svg" height={20} width={20} alt="" />
+            &lt;/Link>
+          &lt;/div>
+        &lt;/ul>
+
+        &lt;div className="sm:hidden h-20 w-full flex justify-between items-center px-5">
+          &lt;Image
+            src="/Logo-petit.svg"
+            height={50}
+            width={50}
+            alt="Logo du site"
+          />
+
+          &lt;button
+            onClick={() => setChangeMenu(!changeMenu)}
+            className="relative w-8 h-8"
+            aria-label="Ouvrir le menu"
+            aria-expanded={changeMenu}
+            aria-controls="mobile-menu"
+          >
+            &lt;Image
+              src="/hamburger.svg"
+              alt=""
+              fill
+              className={`
+                transition-all duration-300 ease-out
+                ${changeMenu ? "opacity-0 scale-75" : "opacity-100 scale-100"}
+              `}
+            />
+            &lt;Image
+              src="/close.svg"
+              alt=""
+              fill
+              className={`
+                transition-all duration-500 ease-out
+                ${changeMenu ? "opacity-100 scale-100" : "opacity-0 scale-75"}
+              `}
+            />
+          &lt;/button>
+        &lt;/div>
+
+        &lt;div
+          id="mobile-menu"
+          className={`
+            sm:hidden
+            overflow-hidden
+            transition-all duration-300 ease-out
+            ${changeMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+          `}
+        >
+          &lt;ul className="flex flex-col text-xl divide-y divide-gray-100 px-6 py-6 bg-white">
+            &lt;Link href="/" className="py-4">Accueil&lt;/Link>
+            &lt;Link href="/about" className="py-4">À propos&lt;/Link>
+            &lt;Link href="/messages" className="py-4">Messagerie&lt;/Link>
+            &lt;Link href="/favorites" className="py-4">Favoris&lt;/Link>
+
+            &lt;button
+              className="
+                mt-6
+                w-[60%]
+                rounded-lg
+                bg-(--main-red)
+                py-2
+                text-white
+                text-sm
+              "
+            >
+              Ajouter un logement
+            &lt;/button>
+          &lt;/ul>
+        &lt;/div>
+      &lt;/nav>
+    &lt;/header>
+  );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Jan 15 2026 10:08:13 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
