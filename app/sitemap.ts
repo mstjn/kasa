@@ -1,7 +1,11 @@
 // app/sitemap.ts
 import type { MetadataRoute } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kasa.com"; // a changer
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://kasa.vercel.app";
+
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
@@ -19,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const properties = await fetch(`http://localhost:3001/api/properties`, {
+  const properties = await fetch(`${API_URL}api/properties`, {
     cache: "no-store",
   })
     .then((res) => res.json())
