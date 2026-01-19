@@ -40,7 +40,6 @@ describe('PropertyCard - favoris', () => {
     )
 
     const button = screen.getByRole('button', { name: /favori/i })
-
     await userEvent.click(button)
 
     expect(onToggleFavorite).toHaveBeenCalledOnce()

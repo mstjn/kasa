@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import MobileCarousel from './mobile-carousel'
 
-// Mock next/image (OBLIGATOIRE en test)
 vi.mock('next/image', () => ({
   default: (props) => <img {...props} />,
 }))
